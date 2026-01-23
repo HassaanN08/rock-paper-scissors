@@ -1,0 +1,88 @@
+<script>
+    //For Computer choice:
+    //Use math.random function to get a random decimal
+    //multiply it by 100 and then floor it
+    //0-33 will generate 'Rock'
+    //34-66 will generate 'Paper'
+    //67-99 will generate 'Scissors'
+
+    const getComputerChoice = () => {
+        const randomNum = Math.floor(Math.random() * 100);
+        console.log(randomNum);
+        let choice = '';
+        if (randomNum <= 33) {
+            choice = 'rock';
+        } else if (randomNum >= 67) {
+            choice = 'scissors';
+        } else {
+            choice = 'paper';
+        }
+
+        return choice;
+        console.log(choice);
+    }
+
+    //For Human Choice:
+    //Get user's input using prompt
+
+    const getHumanChoice = () => {
+        const choice = prompt('Rock, Papers, or Scissors? Pick!')
+        return choice.toLowerCase();
+        console.log(choice);
+    }
+
+    //Create a variable for keeping score of human
+    //Create a variable for keeping score of computer
+
+    let humanScore = 0;
+    let computerScore = 0;
+
+    //Store human's choice
+    //Store Computer's choice
+    //Make different combinations to select who wins
+    //In each round, the game will be played and the score will be incremented
+
+    const playRound = (humanChoice, computerChoice) => {
+        let winner = '';
+        if (humanChoice == 'rock' && computerChoice == 'paper') {
+            winner = 'Computer';
+        } else if (humanChoice == 'paper' && computerChoice == 'scissors') {
+            winner = 'Computer';
+        } else if (humanChoice == 'scissors' && computerChoice == 'rock') {
+            winner = 'Computer';
+        } else if (humanChoice==computerChoice) {
+            winner = 'Draw';
+        } else {
+            winner ='Human'
+        }
+
+        return winner;
+        console.log(winner);
+    }
+
+    //5 rounds will be played
+    //At the end of 5 rounds, compare scores and declare the winner.
+
+    const playGame = () => {
+        for (let i = 1; i <= 5; i++) {
+            let winner = playRound(getHumanChoice(), getComputerChoice());
+            if (winner == 'Human') {
+                humanScore++;
+            } else if (winner == 'Computer') {
+                computerScore++;
+            };
+            console.log('Human Score: ' + humanScore, 'Computer Score: ' + computerScore);
+        }
+
+        if (humanScore > computerScore) {
+            return 'Winner: HUMAN!'
+        } else if (humanScore < computerScore) {
+            return 'Winner: COMPUTER!'
+        } else {
+            return 'TIS A DRAW!'
+        }
+    }
+
+    console.log(playGame());
+
+</script>
